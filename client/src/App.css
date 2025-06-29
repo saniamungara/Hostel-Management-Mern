@@ -1,0 +1,77 @@
+body, html, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root > div {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1;
+}
+
+.background-image {
+  background-image: url('/images/bg-image.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  padding-top: 56px;
+  overflow: hidden;
+}
+
+.navbar-brown {
+  background-color: #6f4e37 !important;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1030;
+}
+
+
+.btn-brown {
+  color: #fff;
+  background-color: #6f4e37;
+  border-color: #6f4e37;
+}
+
+.btn-brown:hover, .btn-brown:focus, .btn-brown:active, .btn-brown.active, .show > .btn-brown.dropdown-toggle {
+  color: #fff;
+  background-color: #5a3e2c;
+  border-color: #5a3e2c;
+}
+
+
+.background-image {
+  padding-top: 56px;
+}
+
+
+.table-brown thead th {
+  background-color: #EADDCA !important;
+  color: #6f4e37 !important;
+}
+
+
+.form-control:focus {
+  border-color: #6f4e37;
+  box-shadow: 0 0 0 0.2rem rgba(111, 78, 55, 0.25);
+}
+
+.form-label {
+  color: #6f4e37;
+  font-weight: 600;
+}
+
+.form-header-brown {
+  background-color: #EADDCA;
+  color: #6f4e37;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
