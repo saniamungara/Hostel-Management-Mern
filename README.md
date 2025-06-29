@@ -42,7 +42,7 @@ Hostel-Management-Mern/
 
 ## 📹 Demo Video
 
-> 🎥 Screen Recording: [Click to watch](Screen%20Recording%202025-06-29%20194016.mp4)
+> 🎥 [Watch the Demo Video](https://drive.google.com/file/d/1NNrXsWiNQ6hiKERNuTWkKpMYfVbkjE9i/view?usp=sharing)
 
 ---
 
