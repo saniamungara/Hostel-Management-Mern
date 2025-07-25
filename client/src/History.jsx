@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export default function History() {
+function History() {
   const [outingCount, setOutingCount] = useState(0);
   const [currentOutings, setCurrentOutings] = useState([]);
   const [previousOutings, setPreviousOutings] = useState([]);
@@ -177,3 +177,4 @@ export default function History() {
     </div>
   );
 }
+export default History;
