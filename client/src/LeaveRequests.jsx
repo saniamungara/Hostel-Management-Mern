@@ -48,6 +48,20 @@ const LeaveRequests = () => {
     const result = await res.json();
     alert(result.message || "All mails sent successfully");
     setShowLeaveStudentsButton(true);
+
+    // Refresh the leave requests list after approval
+    setLoading(true);
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/leaverequestedstudents?caretakerId=${caretakerId}`)
+      .then(response => response.json())
+      .then(data => {
+        setStudents(data);
+        setDecisions({});
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching leave requests:', error);
+        setLoading(false);
+      });
   };
 
   const handleLeaveStudentsList = () => {

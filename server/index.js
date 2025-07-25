@@ -179,12 +179,10 @@ app.post('/submit-leave', async (req, res) => {
 
 app.get('/leaverequestedstudents', async (req, res) => {
     try {
-        // Temporarily disable caretakerId filtering for debugging
-        // const caretakerId = req.query.caretakerId;
-        // console.log('Received caretakerId in /leaverequestedstudents:', caretakerId);
-        // const query = caretakerId ? { caretakerId } : {};
-        const students = await LeaveRequestModel.find({});
-        console.log('Number of leave requests found (no filter):', students.length);
+        const caretakerId = req.query.caretakerId;
+        const query = caretakerId ? { caretakerId } : {};
+        const students = await LeaveRequestModel.find(query);
+        console.log('Number of leave requests found:', students.length);
         res.json(students);
     } catch (error) {
         console.error('Error in /leaverequestedstudents:', error);
@@ -204,11 +202,15 @@ app.get('/debug/all-leave-requests', async (req, res) => {
 });
 
 app.get('/outingrequestedstudents', async (req, res) => {
-    // Temporarily remove caretakerId filtering to debug data visibility issue
-    // const caretakerId = req.query.caretakerId;
-    // const query = caretakerId ? { caretakerId } : {};
-    const students = await OutingStudentModel.find({});
-    res.json(students);
+    try {
+        const caretakerId = req.query.caretakerId;
+        const query = caretakerId ? { caretakerId } : {};
+        const students = await OutingStudentModel.find(query);
+        res.json(students);
+    } catch (error) {
+        console.error('Error in /outingrequestedstudents:', error);
+        res.status(500).json({ message: 'Server Error' });
+    }
 });
 
 app.get('/outingacceptedstudents', async (req, res) => {

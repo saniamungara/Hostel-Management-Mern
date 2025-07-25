@@ -44,6 +44,20 @@ const OutingRequests = () => {
     const result = await res.json();
     alert(result.message || "All mails sent successfully");
     setShowOutingStudentsButton(true); // Show the new button after submission
+
+    // Refresh the outing requests list after approval
+    setLoading(true);
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/outingrequestedstudents?caretakerId=${caretakerId}`)
+      .then(response => response.json())
+      .then(data => {
+        setStudents(data);
+        setDecisions({});
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching outing requests:', error);
+        setLoading(false);
+      });
   };
   const handleOutingsList = () => {
     navigate('/outingacceptedstudents')

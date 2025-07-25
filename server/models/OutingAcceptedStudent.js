@@ -9,7 +9,8 @@ const outingAcceptedStudentSchema = new mongoose.Schema({
     parentPhone: String,
     reason: String,
     submittedAt: Date,
-    email: String   
+    email: String,
+    caretakerId: String
 });
 
 module.exports = mongoose.model('OutingAcceptedStudent', outingAcceptedStudentSchema);
