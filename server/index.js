@@ -318,5 +318,35 @@ app.post('/update-caretaker-id-in-leave-requests', async (req, res) => {
     }
 });
 
+app.get('/student/outing-records', async (req, res) => {
+  const idNumber = req.query.idNumber;
+  try {
+    const currentOutings = await OutingStudentModel.find({ idNumber });
+    const previousOutings = await OutingAcceptedStudentModel.find({ idNumber });
+    res.json({ currentOutings, previousOutings });
+  } catch (error) {
+    console.error('Error fetching outing records:', error);
+    res.status(500).json({ message: 'Failed to fetch outing records' });
+  }
+});
+
+app.get('/student/leave-records', async (req, res) => {
+  const idNumber = req.query.idNumber;
+  try {
+    const leaveRequests = await LeaveRequestModel.find({ idNumber });
+    const acceptedLeaves = await LeaveAcceptedStudentModel.find({ idNumber });
+    const now = new Date();
+    const currentLeaves = leaveRequests; // pending requests (not responded)
+    const previousLeaves = [
+      ...acceptedLeaves, // accepted leaves
+      ...leaveRequests.filter(leave => new Date(leave.leaveEnd) < now) // expired leave requests
+    ];
+    res.json({ currentLeaves, previousLeaves });
+  } catch (error) {
+    console.error('Error fetching leave records:', error);
+    res.status(500).json({ message: 'Failed to fetch leave records' });
+  }
+});
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
