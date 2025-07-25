@@ -11,7 +11,10 @@ const LeaveRequests = () => {
 
   useEffect(() => {
     console.log('Fetching leave requests with caretakerId:', caretakerId);
-    const url = `${import.meta.env.VITE_API_BASE_URL}/leaverequestedstudents?caretakerId=${caretakerId}`;
+    let url = `${import.meta.env.VITE_API_BASE_URL}/leaverequestedstudents`;
+    if (caretakerId && caretakerId !== 'null') {
+      url += `?caretakerId=${caretakerId}`;
+    }
     console.log('Fetch URL:', url);
     fetch(url)
       .then(response => response.json())

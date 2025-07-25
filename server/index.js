@@ -203,9 +203,7 @@ app.get('/debug/all-leave-requests', async (req, res) => {
 
 app.get('/outingrequestedstudents', async (req, res) => {
     try {
-        const caretakerId = req.query.caretakerId;
-        const query = caretakerId ? { caretakerId } : {};
-        const students = await OutingStudentModel.find(query);
+        const students = await OutingStudentModel.find({});
         res.json(students);
     } catch (error) {
         console.error('Error in /outingrequestedstudents:', error);

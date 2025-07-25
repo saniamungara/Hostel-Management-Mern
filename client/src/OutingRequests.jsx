@@ -10,7 +10,11 @@ const OutingRequests = () => {
   const caretakerId = localStorage.getItem("caretakerId");
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/outingrequestedstudents?caretakerId=${caretakerId}`)
+    let url = `${import.meta.env.VITE_API_BASE_URL}/outingrequestedstudents`;
+    if (caretakerId && caretakerId !== 'null') {
+      url += `?caretakerId=${caretakerId}`;
+    }
+    fetch(url)
       .then(response => response.json())
       .then(data => {
         setStudents(data);
@@ -100,7 +104,6 @@ const OutingRequests = () => {
                   return (
                     <tr key={student._id}>
                       <td>{index + 1}</td>
-                {/* Removed Photo cell as per user request */}
                       <td>{student.idNumber}</td>
                       <td>{student.name}</td>
                       <td>{new Date(student.outingTime).toLocaleString()}</td>
