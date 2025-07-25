@@ -34,7 +34,7 @@ function Login() {
       return;
     }
 
-    axios.post('http://localhost:3001/login', { email, password })
+    axios.post(`${import.meta.env.VITE_API_BASE_URL}/login`, { email, password })
       .then(result => {
         console.log(result.data);
         if (result.data.status === "success") {
@@ -74,7 +74,7 @@ function Login() {
     }
 
     if (window.confirm(`Send password reset OTP to ${email}?`)) {
-        axios.post('http://localhost:3001/sendotp', { email })
+        axios.post(`${import.meta.env.VITE_API_BASE_URL}/sendotp`, { email })
             .then(response => {
                 if (response.data.success) {
                     setOtpSent(true);
@@ -97,7 +97,7 @@ function Login() {
       return;
     }
     
-    axios.post('http://localhost:3001/verifyotp', { email, otp })
+    axios.post(`${import.meta.env.VITE_API_BASE_URL}/verifyotp`, { email, otp })
       .then(response => {
         if (response.data.success) {
           setVerified(true);
@@ -123,7 +123,7 @@ function Login() {
       return;
     }
     
-    axios.post('http://localhost:3001/update-password', { email, newPassword })
+    axios.post(`${import.meta.env.VITE_API_BASE_URL}/update-password`, { email, newPassword })
       .then(response => {
         if (response.data.success) {
           alert("Password updated successfully. You can now login with your new password.");

@@ -11,7 +11,7 @@ const LeaveRequests = () => {
 
   useEffect(() => {
     console.log('Fetching leave requests with caretakerId:', caretakerId);
-    const url = `http://localhost:3001/leaverequestedstudents?caretakerId=${caretakerId}`;
+    const url = `${import.meta.env.VITE_API_BASE_URL}/leaverequestedstudents?caretakerId=${caretakerId}`;
     console.log('Fetch URL:', url);
     fetch(url)
       .then(response => response.json())
@@ -39,7 +39,7 @@ const LeaveRequests = () => {
       decisionDetails: "Your custom decision details here"
     }));
 
-    const res = await fetch('http://localhost:3001/send-leave-mails', {
+    const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/send-leave-mails`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)

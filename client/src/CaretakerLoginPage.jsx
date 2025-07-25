@@ -9,26 +9,26 @@ const CaretakerLoginPage = () => {
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        axios.post('http://localhost:3001/caretakerlogin', { ctId, password })
-        .then(result => {
-            console.log(result.data);
-            if (result.data === "success") {
-                localStorage.setItem('caretakerId', ctId);
-                navigate('/caretakerdashboard');
-            } else if (result.data === "no_id") {
-                alert("No such id in the database.");
-            } else if (result.data === "wrong_password") {
-                alert("Incorrect password.");
-            } else {
-                alert("Unexpected response from server.");
-            }
-        })
-        .catch(err => {
-            console.log(err);
-            alert("An error occurred. Please try again later.");
-        });
-    }
+        e.preventDefault();
+        axios.post(`${import.meta.env.VITE_API_BASE_URL}/caretakerlogin`, { ctId, password })
+            .then(result => {
+                console.log(result.data);
+                if (result.data === "success") {
+                    localStorage.setItem('caretakerId', ctId);
+                    navigate('/caretakerdashboard');
+                } else if (result.data === "no_id") {
+                    alert("No such ID in the database.");
+                } else if (result.data === "wrong_password") {
+                    alert("Incorrect password.");
+                } else {
+                    alert("Unexpected response from server.");
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                alert("An error occurred. Please try again later.");
+            });
+    };
 
     return (
         <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
@@ -36,13 +36,12 @@ const CaretakerLoginPage = () => {
                 <h3 className="text-center mb-4">Caretaker Login</h3>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
-                        <label htmlFor="idNumber" className="form-label">
+                        <label htmlFor="ctId" className="form-label">
                             ID Number
                         </label>
                         <input
                             type="text"
                             className="form-control"
-                            name="ctId"
                             id="ctId"
                             placeholder="Enter your ID number"
                             onChange={(e) => setctId(e.target.value)}
@@ -56,7 +55,6 @@ const CaretakerLoginPage = () => {
                         <input
                             type="password"
                             className="form-control"
-                            name="password"
                             id="password"
                             placeholder="Enter your password"
                             onChange={(e) => setPassword(e.target.value)}
@@ -68,7 +66,6 @@ const CaretakerLoginPage = () => {
                     </button>
                 </form>
             </div>
-            {console.log(ctId)}
         </div>
     );
 };

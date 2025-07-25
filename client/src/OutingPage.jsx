@@ -41,7 +41,7 @@ const OutingPage = () => {
     };
   
     try {
-      const response = await fetch('http://localhost:3001/submit-outing', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/submit-outing`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(completeData)

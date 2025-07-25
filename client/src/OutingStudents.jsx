@@ -10,7 +10,7 @@ const OutingStudents = () => {
     useEffect(() => {
         const fetchStudents = async () => {
             try {
-                const response = await fetch('http://localhost:3001/outingacceptedstudents');
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/outingacceptedstudents`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -39,7 +39,7 @@ const OutingStudents = () => {
     const handleCheckIn = async (idNumber) => {
         setDeleteLoading(true);
         try {
-            const response = await fetch(`http://localhost:3001/outingacceptedstudents/${idNumber}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/outingacceptedstudents/${idNumber}`, {
                 method: 'DELETE',
             });
             

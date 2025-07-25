@@ -7,7 +7,8 @@ const LeaveAcceptedStudents = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:3001/leaveacceptedstudents')
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/leaveacceptedstudents`)
+
       .then(response => response.json())
       .then(data => {
         setStudents(data);

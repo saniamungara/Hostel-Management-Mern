@@ -53,7 +53,7 @@ const LeavePage = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:3001/submit-leave', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/submit-leave`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(completeData)

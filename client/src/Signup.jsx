@@ -26,7 +26,7 @@ function Signup() {
     const handleSendOtp = (e) => {
         e.preventDefault();
         console.log("handleSendOtp triggered with:", { name, email, password });
-        axios.post('http://localhost:3001/send-otp', { name, email, password })
+        axios.post(`${import.meta.env.VITE_API_BASE_URL}/send-otp`, { name, email, password })
             .then(result => {
                 console.log("send-otp response:", result.data);
                 if (result.data === "invalid") {
@@ -46,7 +46,7 @@ function Signup() {
     const handleVerifyOtp = (e) => {
         e.preventDefault();
         const fullOtp = otp.join('');
-        axios.post('http://localhost:3001/verify-otp', { email, otp: fullOtp })
+        axios.post(`${import.meta.env.VITE_API_BASE_URL}/verify-otp`, { email, otp: fullOtp })
         .then(result => {
             if (result.data === "verified") {
                 localStorage.setItem("studentId", studentId); 

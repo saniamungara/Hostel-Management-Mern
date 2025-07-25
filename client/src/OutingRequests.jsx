@@ -10,7 +10,7 @@ const OutingRequests = () => {
   const caretakerId = localStorage.getItem("caretakerId");
 
   useEffect(() => {
-    fetch(`http://localhost:3001/outingrequestedstudents?caretakerId=${caretakerId}`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/outingrequestedstudents?caretakerId=${caretakerId}`)
       .then(response => response.json())
       .then(data => {
         setStudents(data);
@@ -35,7 +35,7 @@ const OutingRequests = () => {
       decisionDetails: "Your custom decision details here" 
     }));
 
-    const res = await fetch('http://localhost:3001/send-outing-mails', {
+    const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/send-outing-mails`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)

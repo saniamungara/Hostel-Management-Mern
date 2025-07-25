@@ -23,7 +23,7 @@ export default function History() {
 
         const email = `${studentId.toLowerCase()}@rcee.ac.in`;
         setStudentEmail(email);
-        const recordsResponse = await axios.get(`http://localhost:3001/api/student/outing-records?idNumber=${studentId}`);
+        const recordsResponse = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/student/outing-records?idNumber=${studentId}`);
         const currentOutingsData = recordsResponse.data.currentOutings || [];
         const previousOutingsData = recordsResponse.data.previousOutings || [];
         const now = new Date();
@@ -32,7 +32,7 @@ export default function History() {
         setOutingCount(pastOutingsCount);
         setCurrentOutings(currentOutingsData);
         setPreviousOutings(previousOutingsData);
-        const leaveResponse = await axios.get(`http://localhost:3001/api/student/leave-records?idNumber=${studentId}`);
+        const leaveResponse = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/student/leave-records?idNumber=${studentId}`);
         setCurrentLeaves(leaveResponse.data.currentLeaves || []);
         setPreviousLeaves(leaveResponse.data.previousLeaves || []);
 
